@@ -2,11 +2,15 @@
     font-family: myFirstFont;
     src: url(Nimbus-Sans-D-OT-Light_32752.ttf) format("truetype");
   }
+@font-face {
+    font-family: myFirstFontB;
+    src: url(Nimbus-Sans-D-OT-Bold_32747.ttf) format("truetype");
+  }
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
 
   :root {
     --buttonFontSizes: 10px;
-    --gradient: conic-gradient(from .15turn at 0% 0%, #fce0c0f3, 180deg, #c4ddff, 180deg, #a7bac2);
+    --gradient: conic-gradient(from .15turn at 0% 0%, #fce0c0f3, 180deg, #c4ddff, 180deg, #eca6a4);
     --contentHeight: auto; 
 }
 
@@ -14,11 +18,15 @@
     display: none;
 }
 
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+html body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+
+
+
 
 .background {
     position:fixed;
@@ -28,52 +36,87 @@ box-sizing: border-box;
     z-index: -20;
     left: 0px;
 }
+
 .background::before{
     position: fixed;
-    width: 100vw;
-    height: 100%;
+    width: 150vw;
+    height: 150%;
     content: "";
     background: var(--gradient);
     filter: blur(100px);
   }
-  .container {
-    /* font-family: 'myFirstFont'; */
-    font-family: 'Chakra Petch', sans-serif;
-    display: grid;
-    grid-template-areas: 
-    "a b c d ";
-    grid-template-rows: 100vh;
-    grid-template-columns: .5fr 1fr 1fr .5fr;
-    width: 100vw;
-    height: 100%;
+.container {
+  /* font-family: 'myFirstFont'; */
+  font-family: 'Chakra Petch', sans-serif;
+  display: grid;
+  grid-template-areas: 
+  "a b c d ";
+  grid-template-rows: 100vh;
+  grid-template-columns: .5fr 1fr 1fr .5fr;
+  width: 100vw;
+  height: 100%;
+}
+.container::before {
+  position: fixed;
+  width: 100%;
+  height: 1000%;
+  content: "";
+  background: url(noise.gif);
+  opacity: .03; 
+}
+.dividers {
+  border-right: 1px solid rgb(185, 185, 185);
+  height: 250vh;
+}
+.header-menu {
+  position: fixed;
+  display: flex;
+  padding-left: 8vw;
+  height: 5vh;
+  padding-top: 8vh;
+  padding-right: 8vw;
+  width: 84vw;
+  z-index: 0;
+  overflow: hidden;
+}
+.header-name-v{
+  width: 20px;
+  height: 15px;
+  background-color: rgb(0, 0, 0);
+  opacity: 1;
+}
+
+
+.header-name {
+  margin-left: 2.5rem;
+}
+
+.header-menu-items {
+  display: flex;
+  flex-direction: row;
+margin-left: auto;
+}
+.hero-main {
+  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   }
-  .container::before {
-    position: fixed;
-    width: 100%;
-    height: 1000%;
-    content: "";
-    background: url(noise.gif);
-    opacity: .05; 
-  }
-  .dividers {
-    border-right: 1px solid rgb(185, 185, 185);
-    height: 250vh;
-  }
-  .wrapper {
-    height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    z-index: 10;    
-  }
-  .hero-main{
-    height: 100%;
-    grid-template-columns: 1fr 1fr;
-    z-index: -10;
-  }
+  
+  
+.hero-left{
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+ 
+ 
   
   .fade-down{
     opacity: 0;
-    
   }
   
   .parallaxctx {
@@ -96,7 +139,6 @@ box-sizing: border-box;
 .svg-draw{
   stroke-dashoffset: 1000;
   stroke-dasharray: 1000;
-  animation: draw 6s cubic-bezier(.08,.47,.07,.81) forwards;
 }
 
 @keyframes draw {
@@ -105,5 +147,44 @@ box-sizing: border-box;
   }
 }
 
+
+
+.f-1 {
+  font-family: 'myFirstFont';
+  /* word-spacing: .2rem; */
+  line-height: 1.4rem;
+  letter-spacing: .05em;
+  font-weight: 100;
+  word-spacing: .27em;
+  -webkit-user-select: none;     
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.f-1-b {
+  font-family: 'myFirstFontB';
+  /* word-spacing: .2rem; */
+  line-height: 1.4rem;
+  letter-spacing: .05em;
+  font-weight: 100;
+  word-spacing: .27em;
+  -webkit-user-select: none;     
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.sm {
+  font-size: .8rem;
+}
+.med{
+  font-size: 1.2rem;
+}
+.lg{
+  font-size: 2.5rem;
+}
+.xl{
+  font-size: 6rem;
+}
 
 
