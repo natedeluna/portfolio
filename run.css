@@ -188,3 +188,56 @@ margin-left: auto;
 }
 
 
+.grid-main-frame {
+  position: relative;
+  width: 84%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 22rem);
+
+  border-left: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid-content {
+  display: flex;
+  position: relative;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.pos-left-bot {
+  position: absolute;
+  left: 3rem;
+  bottom: 3rem;
+}
+.pos-right-center {
+  position: absolute;
+  right: 3rem;
+  top:50%;
+}
+
+.pos-center { 
+  height: fit-content;
+  align-self:center;
+  margin: 0 5rem 0 auto;
+}
+
+
+.grid-col-span-2 {
+  grid-column: span 2;
+}
+.grid-col-span-3 {
+  grid-column: span 3;
+}
+.grid-col-span-4 {
+  grid-column: span 4;
+}
+
+.grid-row-span-2 {
+  grid-row: span 2;
+}
+
+.grid-row-span-3 {
+  grid-row: span 3;
+}
