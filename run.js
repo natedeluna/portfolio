@@ -5,16 +5,16 @@
 
     setTimeout(() =>{video.firstElementChild.play()},1300)
 
-    let tl = gsap.timeline({delay: 5.8});
-        tl.fromTo(video,{duration: 2.5, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)"}, { duration: 1, clipPath: "polygon(51% 46%, 54% 46%, 46% 61%, 43% 61%)"});
-        tl.to(video, { duration: .5, clipPath: "polygon(41% 46%, 44% 46%, 36% 61%, 33% 61%)"});
-        tl.to(video, { duration: .5, clipPath: "polygon(8% 8%, 9% 8%, 9% 9%, 8% 9%)"});
-        tl.add(() => {video.remove()});
-        tl.to('.header-name-v', {opacity:"1"})
-        tl.to('.header-name-v', { duration: 2.3, width: "47px"}, ">-.4")
-        tl.add(() => {animOnScroll();
-            drawOnScroll();}, ">-1.6")
-    tl.play();
+    // let tl = gsap.timeline({delay: 5.8});
+    //     tl.fromTo(video,{duration: 2.5, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)"}, { duration: 1, clipPath: "polygon(51% 46%, 54% 46%, 46% 61%, 43% 61%)"});
+    //     tl.to(video, { duration: .5, clipPath: "polygon(41% 46%, 44% 46%, 36% 61%, 33% 61%)"});
+    //     tl.to(video, { duration: .5, clipPath: "polygon(8% 8%, 9% 8%, 9% 9%, 8% 9%)"});
+    //     tl.add(() => {video.remove()});
+    //     tl.to('.header-name-v', {opacity:"1"})
+    //     tl.to('.header-name-v', { duration: 2.3, width: "47px"}, ">-.4")
+    //     tl.add(() => {animOnScroll();
+    //         drawOnScroll();}, ">-1.6")
+    // tl.play();
     
     window.addEventListener('mousemove', (e) => {
         let radian = (Math.atan2(e.y, e.x) * (360 / Math.PI)*.001);
@@ -22,15 +22,15 @@
     })
 
 
-    // window.addEventListener('wheel', animOnScroll)
-    // window.addEventListener('wheel', drawOnScroll)
+    window.addEventListener('wheel', animOnScroll)
+    window.addEventListener('wheel', drawOnScroll)
     
  
 
     function animOnScroll() {
         var elit = document.querySelectorAll('.fade-down');
         for(let i = 0; i< elit.length; i++) {
-            if (elit[i].getBoundingClientRect().top <= 2000) {
+            if (elit[i].getBoundingClientRect().top <= 5000) {
                 elit[i].classList.remove('fade-down');
                 elit[i].classList.add('fade-down-active');
                 var animActive = document.querySelectorAll('.fade-down-active');
