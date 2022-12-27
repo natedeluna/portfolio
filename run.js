@@ -79,9 +79,9 @@
     
     
     document.getElementById("index").addEventListener('mouseleave', () => {
-        document.getElementsByClassName("header-name-v")[0].style.cssText = "background-color: black; transform: scale(1);"
+        document.getElementsByClassName("header-name-v")[0].style.cssText = "background-color: black; transform: scale(1); transition: all 1s;"
     })
     document.getElementById("msg").addEventListener('mouseleave', () => {
-        document.getElementsByClassName("header-name-v")[0].style.cssText = "background-color: black; transform: scale(1);"
+        document.getElementsByClassName("header-name-v")[0].style.cssText = "background-color: black; transform: scale(1); transition: all 1s;"
     })
 
