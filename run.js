@@ -24,22 +24,72 @@
     //     let radian = (Math.atan2(e.y, e.x) * (Math.PI * 36)*.001);
     // }
     
+    // let gradientChange = document.querySelector('.background')
+    
+// window.onload = function () {
+//     const canvas = dcument.getElementById('canvas');
+//     const ctx = canvas.getContext('2d');
+//     canvas.width = window.innerWidth;
+//     canvas.height = window.innerWidth
+//     const bgGradient = new BGGradient (ctx, canvas.width, canvas.height)
+// }
+    
+// class BGGradient {
+//     #ctx
+//     #width
+//     #height
+//     constructor(ctx, width, height) {
+//         this.#ctx = ctx;
+//         this.#width = width;
+//         this.#height = height;
+//         this.#ctx = 
+//     }
+//     #calcRadian(pointerX, pointerY) {
+//         this.#ctx
+//     }
+//     connectedCallback() {
+//         window.addEventListener('pointermove', (e) => {
+            
+//         })
+//     }
+// } 
+    
+    
+    console.log('etst')
     var x = 0
     var y = 0
-    let gradientChange = document.querySelector('.background')
-
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    // let gradient = ctx.createConicGradient(180, 0, 0,);
+    // gradient.addColorStop(.3, "#eca6a4");
+    // gradient.addColorStop(.5, "#a7bac2");
     
+    window.addEventListener('resize', resizeCanvas, false);
     document.addEventListener('mousemove', (e) => {
         x = e.x;
         y = e.y
-    })
-    
-    window.requestAnimationFrame(function updateGradient() {
-        let radian = (Math.atan2(y, x) * (360 / Math.PI)*.001);
-        gradientChange.style.background = `conic-gradient(from ${radian}turn at 0% 0%, #eca6a4, 48deg,  #a7bac2, 150deg, #c4ddff)`
         window.requestAnimationFrame(updateGradient);
     })
-    
+    function updateGradient() {
+            let radian = (Math.atan2(y, x) * (360 / Math.PI)*.01);
+            gradient = ctx.createConicGradient(radian, 0, 0,)
+            ctx.fillRect(0, 0, window.innerWidth, window.innerWidth);
+            console.log(radian)
+            gradient.addColorStop(.3, "#eca6a4");
+            gradient.addColorStop(.5, "#a7bac2");
+            ctx.fillStyle = gradient;
+        }
+        // Add five color stops
+        // function drawGradient (e) {
+        //     // gradient.addColorStop(2, "#c4ddff");
+        // } 
+        function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+  
     // drawOnScroll();
     // animOnScroll();
     // window.addEventListener('wheel', animOnScroll)
