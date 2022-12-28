@@ -28,25 +28,9 @@ html body {
 
 
 
-.background {
-    position:fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0px;
-    z-index: -20;
-    left: 0px;
-    background: var(--gradient);
-    filter: blur(100px);
-}
-
-.background::before{
-    position: fixed;
-    width: 150vw;
-    height: 150%;
-    content: "";
-  }
 .container {
   /* font-family: 'myFirstFont'; */
+  position: fixed;
   font-family: 'Chakra Petch', sans-serif;
   display: grid;
   grid-template-areas: 
@@ -56,14 +40,14 @@ html body {
   width: 100vw;
   height: 100%;
 }
-/* .container::before {
+.container::after {
   position: fixed;
   width: 100%;
   height: 1000%;
   content: "";
   background: url(noise.gif);
   opacity: .03; 
-} */
+}
 .dividers {
   border-right: 1px solid rgb(185, 185, 185);
   height: 250vh;
@@ -116,7 +100,7 @@ html body {
  
   
   .fade-down{
-    opacity: 1;
+    opacity: 0;
   }
   
   .parallaxctx {
@@ -217,7 +201,7 @@ html body {
   height: 5rem;
   align-self:center;
   margin: 0 5rem 0 auto;
-  width: 10rem
+  width: 20rem
 }
 
 

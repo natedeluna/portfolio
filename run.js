@@ -20,11 +20,7 @@
     //     let radian = (Math.atan2(e.y, e.x) * (Math.PI * 36)*.001);
     //     gradientChange.style.background = `conic-gradient(from ${radian}turn at 0% 0%, #eca6a4, 48deg,  #a7bac2, 150deg, #c4ddff)`
     // })
-    // function calcRadian () {
-    //     let radian = (Math.atan2(e.y, e.x) * (Math.PI * 36)*.001);
-    // }
-    
-    // let gradientChange = document.querySelector('.background')
+
     
 // window.onload = function () {
 //     const canvas = dcument.getElementById('canvas');
@@ -60,25 +56,26 @@
     var y = 0
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    // let gradient = ctx.createConicGradient(180, 0, 0,);
-    // gradient.addColorStop(.3, "#eca6a4");
-    // gradient.addColorStop(.5, "#a7bac2");
+ 
     
     window.addEventListener('resize', resizeCanvas, false);
     document.addEventListener('mousemove', (e) => {
         x = e.x;
         y = e.y
-        window.requestAnimationFrame(updateGradient);
+        updateGradient()
     })
     function updateGradient() {
-            let radian = (Math.atan2(y, x) * (360 / Math.PI)*.01);
-            gradient = ctx.createConicGradient(radian, 0, 0,)
-            ctx.fillRect(0, 0, window.innerWidth, window.innerWidth);
-            console.log(radian)
-            gradient.addColorStop(.3, "#eca6a4");
-            gradient.addColorStop(.5, "#a7bac2");
-            ctx.fillStyle = gradient;
-        }
+        let radian = (Math.atan2(y, x) * (360 / Math.PI)*.01);
+        gradient = ctx.createConicGradient(radian, 0, 0,)
+        ctx.fillRect(0, 0, window.innerWidth, window.innerWidth);
+        console.log(radian)
+        gradient.addColorStop(0, "#874744");
+        gradient.addColorStop(.9, "#c1ccd4");
+        // gradient.addColorStop(.3, "#0c3c52");
+        // gradient.addColorStop(.5, "#f5ebf7");
+        ctx.fillStyle = gradient;
+        // window.requestAnimationFrame(updateGradient);
+    }
         // Add five color stops
         // function drawGradient (e) {
         //     // gradient.addColorStop(2, "#c4ddff");
@@ -97,59 +94,41 @@
     
  
 
-    // function animOnScroll () {
-    //     var elit = document.querySelectorAll('.fade-down');
-    //     for(let i = 0; i< elit.length; i++) {
-    //         if (elit[i].getBoundingClientRect().top <= 5000) {
-    //             elit[i].classList.remove('fade-down');
-    //             elit[i].classList.add('fade-down-active');
-    //             var animActive = document.querySelectorAll('.fade-down-active');
-    //             gsap.fromTo(animActive[animActive.length-1], {y: -28, opacity: 0},{y: -3, opacity: 1, duration: 1})
+    function animOnScroll () {
+        var elit = document.querySelectorAll('.fade-down');
+        for(let i = 0; i< elit.length; i++) {
+            if (elit[i].getBoundingClientRect().top <= 5000) {
+                elit[i].classList.remove('fade-down');
+                elit[i].classList.add('fade-down-active');
+                var animActive = document.querySelectorAll('.fade-down-active');
+                gsap.fromTo(animActive[animActive.length-1], {y: -28, opacity: 0},{y: -3, opacity: 1, duration: 1})
         
-    //             console.log(elit.length)
-    //         }
-    //     }
-    //     if (elit.length === 0){
-    //         window.removeEventListener('wheel', animOnScroll)
-    //         console.log('removed')
-    //     }
-    // }
+                console.log(elit.length)
+            }
+        }
+        if (elit.length === 0){
+            window.removeEventListener('wheel', animOnScroll)
+            console.log('removed')
+        }
+    }
 
-    // function drawOnScroll () {
-    //     let svgEl = document.querySelectorAll('.setVB')
-    //     for (let v=0; v<svgEl.length; v++) {
-    //         svgEl[v].setAttribute("viewBox", `0 0 ${window.innerWidth * 1.5} 2`)
-    //         svgEl[v].firstElementChild.setAttribute("d", `M-31 1H${window.innerWidth * 1.5}`)
-    //         console.log(svgEl[v])
-    //     }
+    function drawOnScroll () {
+        let svgEl = document.querySelectorAll('.setVB')
+        for (let v=0; v<svgEl.length; v++) {
+            svgEl[v].setAttribute("viewBox", `0 0 ${window.innerWidth * 1.5} 2`)
+            svgEl[v].firstElementChild.setAttribute("d", `M-31 1H${window.innerWidth * 1.5}`)
+            console.log(svgEl[v])
+        }
 
-    //     var draw = document.querySelectorAll('.svg-draw');
+        var draw = document.querySelectorAll('.svg-draw');
 
-    //     for(let n = 0; n< draw.length; n++) {
-    //         if (draw[n].getBoundingClientRect().top <= 2000) {
-    //             gsap.from(draw[n], {strokeDashoffset: "2000", strokeDasharray: "2000"})
-    //             gsap.to(draw[n], {duration: 4, strokeDashoffset: "0", ease: "power4.out"})
-    //             // draw[n].style.animation="draw 5s cubic-bezier(.08,.47,.07,.81) forwards"
-    //         }
-    //     }
-    // }
+        for(let n = 0; n< draw.length; n++) {
+            if (draw[n].getBoundingClientRect().top <= 2000) {
+                gsap.from(draw[n], {strokeDashoffset: "2000", strokeDasharray: "2000"})
+                gsap.to(draw[n], {duration: 4, strokeDashoffset: "0", ease: "power4.out"})
+                // draw[n].style.animation="draw 5s cubic-bezier(.08,.47,.07,.81) forwards"
+            }
+        }
+    }
 
-    // let headerVis = document.getElementsByClassName("header-name-v")[0]
-    // let indexMI = document.getElementById("index");
-    // let msgMI = document.getElementById("msg");
-
-    // indexMI.addEventListener('mouseover', () => {
-    //     headerVis.style.cssText += "background-color: red; transform: scale(1.7); width: 20px; transition: all .5s;"
-    // })
-    // msgMI.addEventListener('mouseover', () => {
-    //     headerVis.style.cssText += "background-color: blue; transform: scale(1.7); width: 20px; transition: all .5s;"
-    // })
-    
-    
-    // indexMI.addEventListener('mouseleave', () => {
-    //     headerVis.style.cssText = "background-color: black; transform: scale(1); transition: all .5s;"
-    // })
-    // msgMI.addEventListener('mouseleave', () => {
-    //     headerVis.style.cssText = "background-color: black; transform: scale(1); transition: all .5s;"
-    // })
 
