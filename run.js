@@ -69,8 +69,8 @@
         gradient = ctx.createConicGradient(radian, 0, 0,)
         ctx.fillRect(0, 0, window.innerWidth, window.innerWidth);
         console.log(radian)
-        gradient.addColorStop(0, "#874744");
-        gradient.addColorStop(.9, "#c1ccd4");
+        gradient.addColorStop(.1, "#874744");  //blue
+        gradient.addColorStop(.9, "#99caf7");   //red
         // gradient.addColorStop(.3, "#0c3c52");
         // gradient.addColorStop(.5, "#f5ebf7");
         ctx.fillStyle = gradient;
