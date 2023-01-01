@@ -49,26 +49,26 @@
 //         })
 //     }
 // } 
-    
-    
-    console.log('etst')
     var x = 0
     var y = 0
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
+    canvas.style.cssText = `
+    filter: blur(200px); 
+    position: fixed; 
+    opacity: .5;`
  
     
     window.addEventListener('resize', resizeCanvas, false);
-    document.addEventListener('mousemove', (e) => {
-        x = e.x;
-        y = e.y
+    document.addEventListener('pointermove', (e) => {
+        x = e.screenX;
+        y = e.screenY;
         updateGradient()
     })
     function updateGradient() {
         let radian = (Math.atan2(y, x) * (360 / Math.PI)*.01);
         gradient = ctx.createConicGradient(radian, 0, 0,)
-        ctx.fillRect(0, 0, window.innerWidth, window.innerWidth);
-        console.log(radian)
+        ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
         gradient.addColorStop(.1, "#874744");  //blue
         gradient.addColorStop(.9, "#99caf7");   //red
         // gradient.addColorStop(.3, "#0c3c52");
@@ -131,4 +131,14 @@
         }
     }
 
+    function switchMode() {
+        let rootColors = document.querySelector(':root');
+        let switchColorYin = (getComputedStyle(rootColors).getPropertyValue('--dark') !=='#000000') ? '#000000' : '#ffffff';
+        let switchColorYang = (getComputedStyle(rootColors).getPropertyValue('--light') !=='#ffffff') ? '#ffffff' : '#000000';
+        rootColors.style.setProperty('--dark', `${switchColorYin}`);
+        rootColors.style.setProperty('--light', `${switchColorYang}`);
+    }
+    if (window.innerWidth > 700) {
+        switchMode();
+    }
 
