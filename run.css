@@ -61,14 +61,21 @@ div:not(.bg-gradient) {
 .greeting{
   position: relative;
   padding: 3rem 5rem 0;
-  height: 100vh;
   display: flex;
-  border-radius: 2px;
   color: var(--light);
   opacity: 1;
 }
+
+@media (max-width: 600px) {
+  .greeting {
+    padding: 3rem 2rem 0;
+  }
+}
 .info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 .socials {
   display: flex;
@@ -79,11 +86,6 @@ div:not(.bg-gradient) {
   padding: 0 0 1.5rem;
 }
 
-@media (max-width: 600px) {
-  .greeting {
-    padding: 3rem 2rem 0;
-  }
-}
 .lightmode > * {
   transform-origin: center;
 }
@@ -195,6 +197,12 @@ div:not(.bg-gradient) {
 
 .CAPS {
   text-transform: uppercase;
-
 }
 
+.lower-case {
+  text-transform: none;
+}
+
+.test {
+  color: #ffb881;
+}

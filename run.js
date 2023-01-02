@@ -56,7 +56,7 @@
     canvas.style.cssText = `
     filter: blur(200px); 
     position: fixed; 
-    opacity: .5;`
+    opacity: .65;`
  
     
     window.addEventListener('resize', resizeCanvas, false);
@@ -69,8 +69,8 @@
         let radian = (Math.atan2(y, x) * (360 / Math.PI)*.01);
         gradient = ctx.createConicGradient(radian, 0, 0,)
         ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
-        gradient.addColorStop(.1, "#874744");  //blue
-        gradient.addColorStop(.9, "#99caf7");   //red
+        gradient.addColorStop(.1, "#ffb881");  //red
+        gradient.addColorStop(.9, "#99caf7");   //blue
         // gradient.addColorStop(.3, "#0c3c52");
         // gradient.addColorStop(.5, "#f5ebf7");
         ctx.fillStyle = gradient;
@@ -130,13 +130,19 @@
             }
         }
     }
-
+    
     function switchMode() {
+    
         let rootColors = document.querySelector(':root');
         let switchColorYin = (getComputedStyle(rootColors).getPropertyValue('--dark') !=='#000000') ? '#000000' : '#ffffff';
         let switchColorYang = (getComputedStyle(rootColors).getPropertyValue('--light') !=='#ffffff') ? '#ffffff' : '#000000';
+        let inner = document.querySelector('.inner')
+        let outer = document.querySelector('.outer')
+        console.log(outer)
         rootColors.style.setProperty('--dark', `${switchColorYin}`);
         rootColors.style.setProperty('--light', `${switchColorYang}`);
+        inner.setAttribute('fill', switchColorYang)
+        outer.setAttribute('stroke', switchColorYang)
     }
     if (window.innerWidth > 700) {
         switchMode();
