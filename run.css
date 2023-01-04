@@ -28,10 +28,6 @@ div:not(.bg-gradient) {
   
 }
 
-
-
-.wrap {
-}
 .bg-gradient {
   position: fixed;
   width: 100vw;
@@ -59,8 +55,12 @@ div:not(.bg-gradient) {
 }
 
 .greeting{
+  box-sizing: border-box;
   position: relative;
   padding: 3rem 5rem 0;
+  top:0;
+  left: 0;
+  height: 100vh;
   display: flex;
   color: var(--light);
   opacity: 1;
@@ -75,7 +75,7 @@ div:not(.bg-gradient) {
   flex: 1;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+
 }
 .socials {
   display: flex;
@@ -88,47 +88,62 @@ div:not(.bg-gradient) {
 
 .lightmode > * {
   transform-origin: center;
+  user-select:none;
 }
 .lightmode:active > .inner {
   transform: scale(.9);
+  user-select:none;
 }
 .lightmode:active > .outer {
   transform: scale(.8);
+  user-select:none;
 }
   
-  .fade-down{
-    opacity: 0;
-  }
-  
-  .parallaxctx {
-    z-index: -1;
-    position: relative;
-    perspective: 10px;
-  }
-  .parallaxhdr {
-    transform-style: preserve-3d;
-
-  }
-
-  .parallax1 {
-    transform: translateZ(-10px) scale(2);
-  }
-  .parallax2 {
-  transform: translateZ(-2px) scale(1.2);
+.contacts{
+  color: var(--light);
+  position: fixed;
+  font-family: 'Kanit', sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  bottom:0rem; 
+  left: 0px; 
+  width: 100%;
+  padding-top: 1rem; 
+  border-top: 1px solid var(--light);
+}
+.contacts > div {
+  grid-column: 1/1;
+  position: relative;
+  margin: 0rem 1rem 1rem;
+  cursor: pointer;
+  width: fit-content;
 }
 
-.svg-draw{
-  stroke-dashoffset: 1500;
-  stroke-dasharray: 1500;
+.contacts > div > span, .contacts > footer > span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: .5rem;
+  height:1px;
+  background: var(--light);
+  overflow: hidden;
 }
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
+.contacts > div:hover > span, .contacts > footer:hover > span {
+  width: 100%;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  cursor:pointer;
 }
-
-
+.contacts > footer {
+  grid-area: 3/2/3/2;
+  position: relative;
+  justify-self: end;
+  align-self:center;
+  margin: 0rem 1rem 1rem;
+  width: fit-content;
+}
+.contacts > footer::selection{
+  background: #26b0fa00;
+} 
 
 .f-1 {
   font-family: 'myFirstFont';

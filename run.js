@@ -57,13 +57,17 @@
     filter: blur(200px); 
     position: fixed; 
     opacity: .65;`
- 
-    
     window.addEventListener('resize', resizeCanvas, false);
     document.addEventListener('pointermove', (e) => {
         x = e.screenX;
         y = e.screenY;
         updateGradient()
+    })
+    window.addEventListener ('click', (e) => {
+        let email = document.getElementById('email')
+        if (e.target !== email) {
+            email.style.background = ""
+        }
     })
     function updateGradient() {
         let radian = (Math.atan2(y, x) * (360 / Math.PI)*.01);
@@ -138,7 +142,6 @@
         let switchColorYang = (getComputedStyle(rootColors).getPropertyValue('--light') !=='#ffffff') ? '#ffffff' : '#000000';
         let inner = document.querySelector('.inner')
         let outer = document.querySelector('.outer')
-        console.log(outer)
         rootColors.style.setProperty('--dark', `${switchColorYin}`);
         rootColors.style.setProperty('--light', `${switchColorYang}`);
         inner.setAttribute('fill', switchColorYang)
@@ -146,5 +149,24 @@
     }
     if (window.innerWidth > 700) {
         switchMode();
+    }
+
+    function selectText(id){
+        var sel, range;
+
+        var el = document.getElementById(id); //get element id
+        if (window.getSelection && document.createRange) { //Browser compatibility
+          sel = window.getSelection();
+          if(sel.toString() == ''){ //no text selection
+             window.setTimeout(() =>{
+                range = document.createRange(); //range object
+                range.selectNodeContents(el); //sets Range
+                sel.removeAllRanges(); //remove all ranges from selection
+                sel.addRange(range);//add Range to a Selection.
+            },1);
+          }
+        }
+        el.style.background = "#26b0fa30"
+        el.style.borderRadius = "5px"
     }
 
