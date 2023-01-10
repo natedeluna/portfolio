@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Nate De Luna</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -26,50 +26,36 @@
         </div>      -->
         
         <main class="wrap">
+
+            <!-- for gradient background -->
             <div class= 'bg-gradient'>
                 <canvas id="canvas">Sorry, your browser doesnt have the specifications</canvas>
-                <div></div>
+                <div id="mobileBG"></div>
+                <div id="mobileFilter"></div>
             </div>
+
+
             <section class="greeting">
-                <div class="info">
-                    <div class="f-3 pre CAPS">Nate    De Luna</div>
-                    <div class="f-3 sm CAPS pre"> <span style="display: inline-block; transform: rotate(-45deg);">➤</span>  TX, US</div>
-                    <div class="f-3 sm CAPS pre"></div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="f-3 med CAPS" style="display: flex; flex-direction: column; padding: 0 4rem 0 0; line-height: 2rem;">
-                        hi I work for a software agency <br>
-                        <u style="color: rgb(255, 115, 115);">Museum of Captured Sun</u>
-                        <span class="f-3 sm lower-case"> we do web development, systems, and interface design</span> <br> <br>
-                        <div style="">This website indexes personal work</div>
-                    </div>
-                </div>
                 <div class="socials f-3 sm CAPS">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="lightmode" onclick="switchMode()">
                         <circle cx="20" cy="20" r="11" fill="#F2F2F2" class="inner"/>
                         <circle cx="20" cy="20" r="19" stroke="#F2F2F2" stroke-width="1" class="outer" />
-                    </svg> <br>
+                    </svg>
                 </div>
+                <div class="info f-3 lg CAPS line-anim" style="">
+                    <span class="loadGlitch">
+                        <span class = "pre sm" style="display: inline-block; transform-origin:3px; transform: rotate(-45deg);">➤ </span><span class="sm CAP" data-text="US, TX"><span>TX, United States</span></span>
+                    </span>
+                    <span class = "pre" style="opacity: 100%;">Nate De  Luna</span>
+                    
+                    <span> <span class="sm lower-case pre" style="vertical-align: 100%;">hi !     </span><span style="opacity: 100%;">I'm a product engineer working on</span> </span>
+                    <span style= "opacity: 100%; color: rgb(255, 33, 33);">parchment <span class="f-3 sm lower-case" style=" color: rgb(255, 91, 91); display: inline-block;"> a platform to create powerful relations<br> between your local files, notes, and web content</span></span>
+                    <span class="med lower-case"style="margin-top: auto; letter-spacing: 0; font-style: italic;">work</span>
+                </div>
+
             </section>
-            
-            <section>
-                test <br>
-                test <br>
-                test <br>
-                test <br>
-                test <br>
-                test <br>
-                test <br>
-                test <br>
-                test <br>
-                test <br>
-                test <br>
-                test <br>
-                test <br>
-                test <br>
-            </section>            
+            <section class="work"></section>
+         
             <footer class = "contacts">
                 <div>Instagram
                     <span></span>
@@ -101,8 +87,8 @@
             
             
             
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
-        <script src="run.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" defer></script>
+        <script src="run.js" defer></script>
 
     </body>
 </html>

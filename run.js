@@ -1,95 +1,62 @@
+onload = () => {
+    let glitchEffect = document.getElementsByClassName('loadGlitch')[0]
+    glitchEffect.classList.add('hero', 'glitch', 'layers')
+    setTimeout(() => {
+        console.log('fired?')
+        glitchEffect.classList.remove('hero', 'glitch', 'layers')
+    },5000)
 
-
-
-    // let video = document.querySelector('.video');
-
-    // setTimeout(() =>{video.firstElementChild.play()},1300)
-
-    // let tl = gsap.timeline({delay: 5.8});
-    //     tl.fromTo(video,{duration: 2.5, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)"}, { duration: 1, clipPath: "polygon(51% 46%, 54% 46%, 46% 61%, 43% 61%)"});
-    //     tl.to(video, { duration: .5, clipPath: "polygon(41% 46%, 44% 46%, 36% 61%, 33% 61%)"});
-    //     tl.to(video, { duration: .5, clipPath: "polygon(8% 8%, 9% 8%, 9% 9%, 8% 9%)"});
-    //     tl.add(() => {video.remove()});
-    //     tl.to('.header-name-v', {opacity:"1"})
-    //     tl.to('.header-name-v', { duration: 2.3, width: "47px"}, ">-.4")
-    //     tl.add(() => {animOnScroll();
-    //         drawOnScroll();}, ">-1.6")
-    // tl.play();
-
-    // window.addEventListener('mousemove', (e) => {
-    //     let radian = (Math.atan2(e.y, e.x) * (Math.PI * 36)*.001);
-    //     gradientChange.style.background = `conic-gradient(from ${radian}turn at 0% 0%, #eca6a4, 48deg,  #a7bac2, 150deg, #c4ddff)`
-    // })
-
-    
-// window.onload = function () {
-//     const canvas = dcument.getElementById('canvas');
-//     const ctx = canvas.getContext('2d');
-//     canvas.width = window.innerWidth;
-//     canvas.height = window.innerWidth
-//     const bgGradient = new BGGradient (ctx, canvas.width, canvas.height)
-// }
-    
-// class BGGradient {
-//     #ctx
-//     #width
-//     #height
-//     constructor(ctx, width, height) {
-//         this.#ctx = ctx;
-//         this.#width = width;
-//         this.#height = height;
-//         this.#ctx = 
-//     }
-//     #calcRadian(pointerX, pointerY) {
-//         this.#ctx
-//     }
-//     connectedCallback() {
-//         window.addEventListener('pointermove', (e) => {
-            
-//         })
-//     }
-// } 
-    var x = 0
-    var y = 0
+} 
+var x = 0
+var y = 0
+var radian = window.innerWidth > 500 ? .7 : 2.7;
+var opacity = window.innerWidth > 500 ? .65 : .9;
+if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i) || window.innerWidth < 500){
+    let mobileGradient = document.querySelector('#mobileBG');
+    document.querySelector('canvas').remove();
+    mobileGradient.style.background = `conic-gradient(from ${.1}turn at 0% 0%,#34ace0, 45deg, #e39686)`;
+    // mobileGradient.style.filter = "blur(60px)";
+ 
+  } else{
+    document.querySelector('#mobileFilter').remove();
+    console.log("not mobile device");
     const canvas = document.getElementById('canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
     canvas.style.cssText = `
-    filter: blur(200px); 
-    position: fixed; 
-    opacity: .65;`
+        filter: blur(200px); 
+        position: fixed; 
+        opacity: ${opacity};
+        `;
+    updateGradient(radian);
     window.addEventListener('resize', resizeCanvas, false);
-    document.addEventListener('pointermove', (e) => {
+    window.addEventListener('pointermove', (e) => {
         x = e.screenX;
         y = e.screenY;
-        updateGradient()
+        radian = (Math.atan2(y, x) * (360 / Math.PI)*.01);
+        updateGradient(radian)
     })
-    window.addEventListener ('click', (e) => {
-        let email = document.getElementById('email')
-        if (e.target !== email) {
-            email.style.background = ""
-        }
-    })
-    function updateGradient() {
-        let radian = (Math.atan2(y, x) * (360 / Math.PI)*.01);
-        gradient = ctx.createConicGradient(radian, 0, 0,)
-        ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+    function updateGradient(xx) {
+        gradient = ctx.createConicGradient(xx, 0, 0,)
         gradient.addColorStop(.1, "#ffb881");  //red
         gradient.addColorStop(.9, "#99caf7");   //blue
-        // gradient.addColorStop(.3, "#0c3c52");
-        // gradient.addColorStop(.5, "#f5ebf7");
         ctx.fillStyle = gradient;
-        // window.requestAnimationFrame(updateGradient);
+        ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
     }
-        // Add five color stops
-        // function drawGradient (e) {
-        //     // gradient.addColorStop(2, "#c4ddff");
-        // } 
-        function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-        }
-        
-        resizeCanvas();
+  }
+window.addEventListener ('click', (e) => {
+    let email = document.getElementById('email')
+    if (e.target !== email) {
+        email.style.background = ""
+    }
+})
+
+function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+}
+    
   
     // drawOnScroll();
     // animOnScroll();
@@ -99,12 +66,12 @@
  
 
     function animOnScroll () {
-        var elit = document.querySelectorAll('.fade-down');
+        var elit = document.querySelectorAll('.line-anim');
         for(let i = 0; i< elit.length; i++) {
             if (elit[i].getBoundingClientRect().top <= 5000) {
-                elit[i].classList.remove('fade-down');
-                elit[i].classList.add('fade-down-active');
-                var animActive = document.querySelectorAll('.fade-down-active');
+                elit[i].classList.remove('line-anim');
+                elit[i].classList.add('line-anim-active');
+                var animActive = document.querySelectorAll('.line-anim-active');
                 gsap.fromTo(animActive[animActive.length-1], {y: -28, opacity: 0},{y: -3, opacity: 1, duration: 1})
         
                 console.log(elit.length)
