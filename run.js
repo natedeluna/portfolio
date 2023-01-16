@@ -1,12 +1,31 @@
 onload = () => {
-    let glitchEffect = document.getElementsByClassName('loadGlitch')[0]
-    glitchEffect.classList.add('hero', 'glitch', 'layers')
-    setTimeout(() => {
-        console.log('fired?')
-        glitchEffect.classList.remove('hero', 'glitch', 'layers')
-    },5000)
 
-} 
+}
+window.addEventListener('mousemove', loadHero)
+function loadHero() {
+    let heroText = document.querySelectorAll('.line');
+    let fillText = "Nate De Luna // Engineer // TX, US ";
+    let fillTextCont = document.querySelector('.type-anim');
+    let cursor = document.querySelector('.blink')
+    gsap.fromTo(cursor,{opacity:1, ease:'none'},{opacity:0, repeat:12, duration:.7, ease: 'none'})
+    setTimeout(function(){
+        for (let i=0; i<fillText.length; i++) {
+            setTimeout( function() {
+                addChar = fillText.charAt(i);
+                fillTextCont.innerHTML = fillTextCont.innerHTML += addChar
+            },100 * (i+1))
+        }
+    },1240);
+
+    setTimeout(function(){
+        [...heroText].forEach( function(e, i) {
+            setTimeout(function() {
+                gsap.fromTo(e,{x: 20, opacity: 0, duration: .9}, {x: 0, opacity: 1, duration: .9});
+            }, 450 * (i+1))
+        })
+    },6000)
+    window.removeEventListener('mousemove', loadHero)
+}
 var x = 0
 var y = 0
 var radian = window.innerWidth > 500 ? .7 : 2.7;
@@ -16,6 +35,8 @@ if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i
     document.querySelector('canvas').remove();
     mobileGradient.style.background = `conic-gradient(from ${.1}turn at 0% 0%,#34ace0, 45deg, #e39686)`;
     // mobileGradient.style.filter = "blur(60px)";
+    let root = document.querySelector(':root');
+    root.style.setProperty('--noise-opacity', '.015')
  
   } else{
     document.querySelector('#mobileFilter').remove();
@@ -45,12 +66,6 @@ if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i
         ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
     }
   }
-window.addEventListener ('click', (e) => {
-    let email = document.getElementById('email')
-    if (e.target !== email) {
-        email.style.background = ""
-    }
-})
 
 function resizeCanvas() {
         canvas.width = window.innerWidth;
@@ -79,7 +94,6 @@ function resizeCanvas() {
         }
         if (elit.length === 0){
             window.removeEventListener('wheel', animOnScroll)
-            console.log('removed')
         }
     }
 
@@ -105,8 +119,8 @@ function resizeCanvas() {
     function switchMode() {
     
         let rootColors = document.querySelector(':root');
-        let switchColorYin = (getComputedStyle(rootColors).getPropertyValue('--dark') !=='#000000') ? '#000000' : '#ffffff';
-        let switchColorYang = (getComputedStyle(rootColors).getPropertyValue('--light') !=='#ffffff') ? '#ffffff' : '#000000';
+        let switchColorYin = (getComputedStyle(rootColors).getPropertyValue('--dark') ==='#000000') ? '#fafafa' : '#000000';
+        let switchColorYang = (getComputedStyle(rootColors).getPropertyValue('--light') ==='#fafafa') ? '#000000' : '#fafafa';
         let inner = document.querySelector('.inner')
         let outer = document.querySelector('.outer')
         rootColors.style.setProperty('--dark', `${switchColorYin}`);
@@ -117,7 +131,6 @@ function resizeCanvas() {
     if (window.innerWidth > 700) {
         switchMode();
     }
-
     function selectText(id){
         var sel, range;
 
