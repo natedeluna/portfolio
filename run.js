@@ -7,15 +7,20 @@ window.addEventListener('mousemove', loadHero)
 function loadHero() {
     let heroText = document.querySelectorAll('.line');
     let fillTextCont = document.querySelector('.type-anim');
-    let fillText = "Nate  De Luna  //  Product  Architect  //  TX, US";
+    let fillText = " created by Nate  De Luna  //  Product  Architect  //  based in TX, US";
     let cursor = document.querySelector('.blink')
     gsap.fromTo(cursor,{opacity:1, ease:'none'},{opacity:0, repeat:12, duration:.7, ease: 'none'})
+    let slowTyping = 0;
     setTimeout(function(){
         for (let i=0; i<fillText.length; i++) {
+            let typingSpeed = slowTyping === 2 ? 2000 : 40
             setTimeout( function() {
                 addChar = fillText.charAt(i);
+                if (addChar === '/') {
+                    addChar = '<span style = "color: red; font-weight: 800; font-size: 1.3rem;">/</span>'; 
+                }
                 fillTextCont.innerHTML = fillTextCont.innerHTML += addChar
-            },100 * (i+1))
+            },typingSpeed * (i+1))
         }
     },1240);
     
@@ -25,7 +30,7 @@ function loadHero() {
                 gsap.fromTo(e,{x: 20, opacity: 0, duration: .9}, {x: 0, opacity: 1, duration: .9});
             }, 450 * (i+1))
         })
-    },6000)
+    },4000)
     window.removeEventListener('mousemove', loadHero)
 }
 var x = 0
@@ -90,10 +95,13 @@ function switchMode() {
     outer.setAttribute('stroke', switchColorYang)
 
     let SafariToolBarColor = document.querySelector("meta[name=theme-color]");
+    let typeAnimCont = document.querySelector('.type-anim-cont')
     if (switchColorYin === '#fafafa') {
         SafariToolBarColor.setAttribute('content', '#cad4db')
+        typeAnimCont.style.fontWeight= '700'
     } else {
         SafariToolBarColor.setAttribute('content', '#474e57')
+        typeAnimCont.style.fontWeight= '500'
     }
 }
 if (window.innerWidth > 700) {
