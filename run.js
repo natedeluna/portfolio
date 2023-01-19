@@ -1,11 +1,13 @@
 onload = () => {
 
 }
+let globalSwitcher = 0;
+
 window.addEventListener('mousemove', loadHero)
 function loadHero() {
     let heroText = document.querySelectorAll('.line');
-    let fillText = "Nate De Luna // Engineer // TX, US ";
     let fillTextCont = document.querySelector('.type-anim');
+    let fillText = "Nate  De Luna  //  Product  Architect  //  TX, US";
     let cursor = document.querySelector('.blink')
     gsap.fromTo(cursor,{opacity:1, ease:'none'},{opacity:0, repeat:12, duration:.7, ease: 'none'})
     setTimeout(function(){
@@ -16,7 +18,7 @@ function loadHero() {
             },100 * (i+1))
         }
     },1240);
-
+    
     setTimeout(function(){
         [...heroText].forEach( function(e, i) {
             setTimeout(function() {
@@ -31,6 +33,8 @@ var y = 0
 var radian = window.innerWidth > 500 ? .7 : 2.7;
 var opacity = window.innerWidth > 500 ? .65 : .9;
 if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i) || window.innerWidth < 500){
+    let fillTextCont = document.querySelector('.type-anim');
+    fillTextCont.parentElement.classList.add('middle');
     let mobileGradient = document.querySelector('#mobileBG');
     document.querySelector('canvas').remove();
     mobileGradient.style.background = `conic-gradient(from ${.1}turn at 0% 0%,#34ace0, 45deg, #e39686)`;
@@ -72,81 +76,45 @@ function resizeCanvas() {
         canvas.height = window.innerHeight;
 }
     
-  
-    // drawOnScroll();
-    // animOnScroll();
-    // window.addEventListener('wheel', animOnScroll)
-    // window.addEventListener('wheel', drawOnScroll)
+
     
- 
+function switchMode() {
+    let rootColors = document.querySelector(':root');
+    let switchColorYin = (getComputedStyle(rootColors).getPropertyValue('--dark') ==='#000000') ? '#fafafa' : '#000000';
+    let switchColorYang = (getComputedStyle(rootColors).getPropertyValue('--light') ==='#fafafa') ? '#000000' : '#fafafa';
+    let inner = document.querySelector('.inner')
+    let outer = document.querySelector('.outer')
+    rootColors.style.setProperty('--dark', `${switchColorYin}`);
+    rootColors.style.setProperty('--light', `${switchColorYang}`);
+    inner.setAttribute('fill', switchColorYang)
+    outer.setAttribute('stroke', switchColorYang)
 
-    function animOnScroll () {
-        var elit = document.querySelectorAll('.line-anim');
-        for(let i = 0; i< elit.length; i++) {
-            if (elit[i].getBoundingClientRect().top <= 5000) {
-                elit[i].classList.remove('line-anim');
-                elit[i].classList.add('line-anim-active');
-                var animActive = document.querySelectorAll('.line-anim-active');
-                gsap.fromTo(animActive[animActive.length-1], {y: -28, opacity: 0},{y: -3, opacity: 1, duration: 1})
-        
-                console.log(elit.length)
-            }
-        }
-        if (elit.length === 0){
-            window.removeEventListener('wheel', animOnScroll)
+    let SafariToolBarColor = document.querySelector("meta[name=theme-color]");
+    if (switchColorYin === '#fafafa') {
+        SafariToolBarColor.setAttribute('content', '#cad4db')
+    } else {
+        SafariToolBarColor.setAttribute('content', '#474e57')
+    }
+}
+if (window.innerWidth > 700) {
+    switchMode();
+}
+function selectText(id){
+    var sel, range;
+
+    var el = document.getElementById(id); //get element id
+    if (window.getSelection && document.createRange) { //Browser compatibility
+        sel = window.getSelection();
+        if(sel.toString() == ''){ //no text selection
+            window.setTimeout(() =>{
+            range = document.createRange(); //range object
+            range.selectNodeContents(el); //sets Range
+            sel.removeAllRanges(); //remove all ranges from selection
+            sel.addRange(range);//add Range to a Selection.
+        },1);
         }
     }
-
-    function drawOnScroll () {
-        let svgEl = document.querySelectorAll('.setVB')
-        for (let v=0; v<svgEl.length; v++) {
-            svgEl[v].setAttribute("viewBox", `0 0 ${window.innerWidth * 1.5} 2`)
-            svgEl[v].firstElementChild.setAttribute("d", `M-31 1H${window.innerWidth * 1.5}`)
-            console.log(svgEl[v])
-        }
-
-        var draw = document.querySelectorAll('.svg-draw');
-
-        for(let n = 0; n< draw.length; n++) {
-            if (draw[n].getBoundingClientRect().top <= 2000) {
-                gsap.from(draw[n], {strokeDashoffset: "2000", strokeDasharray: "2000"})
-                gsap.to(draw[n], {duration: 4, strokeDashoffset: "0", ease: "power4.out"})
-                // draw[n].style.animation="draw 5s cubic-bezier(.08,.47,.07,.81) forwards"
-            }
-        }
-    }
-    
-    function switchMode() {
-    
-        let rootColors = document.querySelector(':root');
-        let switchColorYin = (getComputedStyle(rootColors).getPropertyValue('--dark') ==='#000000') ? '#fafafa' : '#000000';
-        let switchColorYang = (getComputedStyle(rootColors).getPropertyValue('--light') ==='#fafafa') ? '#000000' : '#fafafa';
-        let inner = document.querySelector('.inner')
-        let outer = document.querySelector('.outer')
-        rootColors.style.setProperty('--dark', `${switchColorYin}`);
-        rootColors.style.setProperty('--light', `${switchColorYang}`);
-        inner.setAttribute('fill', switchColorYang)
-        outer.setAttribute('stroke', switchColorYang)
-    }
-    if (window.innerWidth > 700) {
-        switchMode();
-    }
-    function selectText(id){
-        var sel, range;
-
-        var el = document.getElementById(id); //get element id
-        if (window.getSelection && document.createRange) { //Browser compatibility
-          sel = window.getSelection();
-          if(sel.toString() == ''){ //no text selection
-             window.setTimeout(() =>{
-                range = document.createRange(); //range object
-                range.selectNodeContents(el); //sets Range
-                sel.removeAllRanges(); //remove all ranges from selection
-                sel.addRange(range);//add Range to a Selection.
-            },1);
-          }
-        }
-        el.style.background = "#26b0fa30"
-        el.style.borderRadius = "5px"
-    }
+    el.style.background = "#26b0fa30"
+    el.style.borderRadius = "5px"
+}
 
