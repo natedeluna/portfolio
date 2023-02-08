@@ -26,6 +26,7 @@
   height: 100vh;
   top: 0;
   left: 0;
+  z-index: 0;
 }
 .bg-gradient::after {
   position: fixed;
@@ -41,7 +42,7 @@
 #mobileBG {
   background-color: var(--dark); 
   position: fixed;
-  opacity:.92; 
+  opacity:1; 
   top: 0; 
   left: 0; 
   width: 100%; 
@@ -59,6 +60,27 @@
   z-index:0;
   opacity: .45;
 }
+.wrap {
+  width: 100vw;
+}
+.fixedNav{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+}
+
+.type-anim-cont {
+  position: absolute;
+  font-weight: 700;
+  bottom: 3rem;
+  left: 5rem;
+  /* -webkit-text-fill-color: transparent; */
+  /* -webkit-background-clip: text; */
+  /* background-image: linear-gradient(180deg, rgba(255,255,255,1) 100%, rgba(0,0,0,1) 100%); */
+  /* mix-blend-mode: difference; */
+  color: var(--light);
+}
 
 .card{
   position: relative;
@@ -67,10 +89,19 @@
   max-height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   color: var(--light);
+  z-index: 5;
 }
-
+.work-index {
+  position: relative;
+  display: flex;
+  margin: 3rem 5rem 3rem;
+  z-index: 0;
+  border: 1px solid var(--light);
+  color: var(--light);
+  z-index: 6;
+}
 .lg{
   font-size: 4rem;
 }
@@ -90,24 +121,19 @@
   }
 
 }
-.info {
-  margin-bottom: 8rem;
-}
+
 
 .line {
   opacity: 0;
   /* display: inline; */
   margin: 5px;
-  padding: 0 5px 0;
+  padding: 0 1rem 0;
   border-radius: 5px;
   -webkit-box-shadow: inset -3px 10px 22px 3px #909bdb26;
   -moz-box-shadow: inset -3px 10px 22px 3px #909bdb26;
   box-shadow: inset -3px 10px 22px 3px #909bdb26;
 }
-.socials {
-  text-align:  right;
-  height: fit-content;
-}
+
 
 .blink {
 
@@ -130,51 +156,6 @@
   user-select:none;
 }
   
-.contacts{
-  color: var(--light);
-  position: fixed;
-  font-family: 'Kanit', sans-serif;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  bottom:0rem; 
-  left: 0px; 
-  width: 100%;
-  padding-top: 1rem; 
-  border-top: 1px solid var(--light);
-}
-.contacts > div {
-  grid-column: 1/1;
-  position: relative;
-  margin: 0rem 1rem 1rem;
-  cursor: pointer;
-  width: fit-content;
-}
-
-.contacts > div > span, .contacts > footer > span {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: .5rem;
-  height:1px;
-  background: var(--light);
-  overflow: hidden;
-}
-.contacts > div:hover > span, .contacts > footer:hover > span {
-  width: 100%;
-  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-  cursor:pointer;
-}
-.contacts > footer {
-  grid-area: 3/2/3/2;
-  position: relative;
-  justify-self: end;
-  align-self:center;
-  margin: 0rem 1rem 1rem;
-  width: fit-content;
-}
-.contacts > footer::selection{
-  background: #26b0fa00;
-} 
 
 .f-1 {
   font-family: 'myFirstFont';

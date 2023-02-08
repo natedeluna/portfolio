@@ -7,9 +7,9 @@ window.addEventListener('mousemove', loadHero)
 function loadHero() {
     let heroText = document.querySelectorAll('.line');
     let fillTextCont = document.querySelector('.type-anim');
-    let fillText = " created by Nate  De Luna  //  Product  Architect  //  based in TX, US";
+    let fillText = " by Nate  De Luna  //  Architect  //  based in TX, US";
     let cursor = document.querySelector('.blink')
-    gsap.fromTo(cursor,{opacity:1, ease:'none'},{opacity:0, repeat:12, duration:.7, ease: 'none'})
+    gsap.fromTo(cursor,{opacity:1, ease:'none'},{opacity:0, repeat:22, duration:.7, ease: 'none'})
     let slowTyping = 0;
     setTimeout(function(){
         for (let i=0; i<fillText.length; i++) {
